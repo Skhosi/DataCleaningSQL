@@ -1,0 +1,129 @@
+Data Cleaning Code from SQL
+
+-- View all data
+SELECT *  
+FROM `projects-396814.Cars.car_info` 
+
+
+-- View the different fuel types
+
+SELECT
+DISTINCT fuel_type
+FROM `projects-396814.Cars.car_info` 
+
+
+
+-- Inspect the column length
+
+SELECT
+MIN(length) as min_length.
+MAX(length) as max_length
+FROM `projects-396814.Cars.car_info` 
+
+
+
+-- Fill in missing data
+SELECT *
+FROM `projects-396814.Cars.car_info` 
+WHERE num_of_doors IS NULL
+
+
+
+-- Update where num_of_doors is null
+
+UPDATE 
+ `projects-396814.Cars.car_info` 
+SET
+ num_of_doors = "four"
+WHERE 
+ make = "dodge" AND
+ fuel_type = "gas" AND 
+body_style = "sedan";
+
+UPDATE 
+ `projects-396814.Cars.car_info` 
+SET
+ num_of_doors = "four"
+WHERE 
+ make = "mazda" AND
+ fuel_type = "diesel" AND 
+body_style = "sedan"
+
+
+
+-- Run code again to verify if both have been changed
+
+SELECT *
+FROM `projects-396814.Cars.car_info` 
+WHERE num_of_doors IS NULL
+
+
+
+
+-- View the num of cylinders
+
+SELECT 
+ DISTINCT num_of_cylinders
+FROM `projects-396814.Cars.car_info` 
+
+
+
+-- Update incorrect spelling 
+
+UPDATE `projects-396814.Cars.car_info`
+SET num_of_cylinders = "two"
+WHERE num_of_cylinders = "tow"
+
+
+
+-- Check if compression_ratio column values range from 7 -23
+
+SELECT 
+MIN(compression_ratio) as min_compression_ratio,
+MAX(compression_ratio) as max_compression_ratio
+FROM `projects-396814.Cars.car_info`
+
+
+
+-- Highest value = 70, view all other max_compression not equal 70
+
+SELECT 
+MIN(compression_ratio) as min_compression_ratio,
+MAX(compression_ratio) as max_compression_ratio
+FROM `projects-396814.Cars.car_info`
+WHERE compression_ratio <> 70
+
+
+
+ --Delete the compression ratio which is above the norm
+
+ DELETE
+  `projects-396814.Cars.car_info`
+ WHERE compression_ratio =70
+
+
+-- Check distince values and length in the drive wheels column
+
+SELECT
+  DISTINCT drive_wheels,
+  Length(drive_wheels) as string_length
+FROM `projects-396814.Cars.car_info`
+
+
+-- Update the column with extra spaces
+
+UPDATE
+   `projects-396814.Cars.car_info`
+SET 
+   drive_wheels = TRIM(drive_wheels)
+WHERE TRUE
+
+
+
+-- Verify that uodate has been made
+
+SELECT 
+  DISTINCT drive_wheels
+FROM `projects-396814.Cars.car_info`
+
+
